@@ -60,7 +60,7 @@ jobs:
         uses: sigstore/cosign-installer@116dc6872c0a067bcb78758f18955414cdbf918f #v1.4.1
         
       - name: Run Cosign
-        run:
+        run: |
           SOURCE_FILE=README.md
           COSIGN_OUTPUT=cosign_output/cosign-cert.pem
           TARGET_BUCKET=cosign_output/cosign-signature.sig
