@@ -54,3 +54,14 @@ jobs:
         uses: github/codeql-action/upload-sarif@5f532563584d71fdef14ee64d17bafb34f751ce5 # v1.0.26
         with:
           sarif_file: results.sarif
+      
+      # Install Cosign and run.
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@116dc6872c0a067bcb78758f18955414cdbf918f #v1.4.1
+        
+      - name: Run Cosign
+        run:
+          SOURCE_FILE=README.md
+          COSIGN_OUTPUT=cosign_output/cosign-cert.pem
+          TARGET_BUCKET=cosign_output/cosign-signature.sig
+          cosign sign-blob --output-certificate $COSIGN_OUTPUT --output-signature $COSIGN_OUTPUT $SOURCE_FILE
