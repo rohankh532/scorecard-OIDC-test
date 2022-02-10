@@ -56,7 +56,7 @@ jobs:
         with:
           sarif_file: results.sarif
       
-      # Install Cosign and run.
+      # Install Cosign and run on results.
       - name: Install Cosign
         uses: sigstore/cosign-installer@116dc6872c0a067bcb78758f18955414cdbf918f #v1.4.1
         
@@ -64,7 +64,7 @@ jobs:
         env: 
           COSIGN_EXPERIMENTAL: true
         run: |
-          SOURCE_FILE=README.md
+          SOURCE_FILE=results.sarif
           COSIGN_OUTPUT_CERT=cosign_output/cosign-cert.pem
           COSIGN_OUTPUT_SIG=cosign_output/cosign-signature.sig
           cosign sign-blob --output-certificate $COSIGN_OUTPUT_CERT --output-signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
