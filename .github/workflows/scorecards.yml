@@ -68,6 +68,7 @@ jobs:
           COSIGN_OUTPUT_CERT=cosign_output/cosign-cert.pem
           COSIGN_OUTPUT_SIG=cosign_output/cosign-signature.sig
           cosign sign-blob --output-certificate $COSIGN_OUTPUT_CERT --output-signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
+          cosign verify-blob --cert cosign_output/cosign-cert.pem --signature cosign_output/cosign-signature.sig results.sarif
           
       - name: "Upload cosign artifact"
         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
