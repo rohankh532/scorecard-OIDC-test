@@ -80,4 +80,4 @@ jobs:
         env:
           COSIGN_EXPERIMENTAL: true
         run: |
-          cosign verify-blob --cert $COSIGN_OUTPUT_CERT --signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
+          cosign verify-blob --cert cosign_output/cosign-cert.pem --signature cosign_output/cosign-signature.sig results.sarif
