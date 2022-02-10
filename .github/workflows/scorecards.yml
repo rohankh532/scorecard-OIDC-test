@@ -65,6 +65,6 @@ jobs:
           COSIGN_EXPERIMENTAL: true
         run: |
           SOURCE_FILE=README.md
-          COSIGN_OUTPUT=cosign_output/cosign-cert.pem
-          TARGET_BUCKET=cosign_output/cosign-signature.sig
-          cosign sign-blob --output-certificate $COSIGN_OUTPUT --output-signature $COSIGN_OUTPUT $SOURCE_FILE
+          COSIGN_OUTPUT_CERT=cosign_output/cosign-cert.pem
+          COSIGN_OUTPUT_SIG=cosign_output/cosign-signature.sig
+          cosign sign-blob --output-certificate $COSIGN_OUTPUT_CERT --output-signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
