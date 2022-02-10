@@ -79,4 +79,5 @@ jobs:
       - name: "Verify cert"
         env:
           COSIGN_EXPERIMENTAL: true
-        run: cosign verify-blob --cert $COSIGN_OUTPUT_CERT --signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
+        run: |
+          cosign verify-blob --cert $COSIGN_OUTPUT_CERT --signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
