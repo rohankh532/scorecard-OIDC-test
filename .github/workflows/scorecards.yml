@@ -75,3 +75,8 @@ jobs:
           name: cosign data
           path: cosign_output
           retention-days: 5
+          
+      - name: "Verify cert"
+        env:
+          COSIGN_EXPERIMENTAL: true
+        run: cosign verify-blob --cert $COSIGN_OUTPUT_CERT --signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
