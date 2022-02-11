@@ -58,7 +58,7 @@ jobs:
       
       # Install Cosign and run on results.
       - name: Install Cosign
-        uses: sigstore/cosign-installer@c3e4d8b7cd2f6f065941510b260f173b70c695fa #v1.5.1
+        uses: sigstore/cosign-installer@main #latest
         
       - name: Run Cosign
         env: 
