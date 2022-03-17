@@ -50,6 +50,7 @@ jobs:
           path: results.sarif
           retention-days: 5
       
+      # Temp for debugging.
       - name: "Upload artifact"
         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
         with:
@@ -63,28 +64,28 @@ jobs:
         with:
           sarif_file: results.sarif
       
-      # Install Cosign and run on results.
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@main #latest
+#       # Install Cosign and run on results.
+#       - name: Install Cosign
+#         uses: sigstore/cosign-installer@main #latest
         
-      - name: Run Cosign
-        env: 
-          COSIGN_EXPERIMENTAL: true
-        run: |
-          SOURCE_FILE=results.sarif
-          COSIGN_OUTPUT_CERT=cosign_output/cosign-cert.pem
-          COSIGN_OUTPUT_SIG=cosign_output/cosign-signature.sig
-          cosign sign-blob --output-certificate $COSIGN_OUTPUT_CERT --output-signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
+#       - name: Run Cosign
+#         env: 
+#           COSIGN_EXPERIMENTAL: true
+#         run: |
+#           SOURCE_FILE=results.sarif
+#           COSIGN_OUTPUT_CERT=cosign_output/cosign-cert.pem
+#           COSIGN_OUTPUT_SIG=cosign_output/cosign-signature.sig
+#           cosign sign-blob --output-certificate $COSIGN_OUTPUT_CERT --output-signature $COSIGN_OUTPUT_SIG $SOURCE_FILE
           
-      - name: "Upload cosign artifact"
-        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
-        with:
-          name: cosign data
-          path: cosign_output
-          retention-days: 5
+#       - name: "Upload cosign artifact"
+#         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
+#         with:
+#           name: cosign data
+#           path: cosign_output
+#           retention-days: 5
           
-      - name: "Verify cert"
-        env:
-          COSIGN_EXPERIMENTAL: true
-        run: |
-          cosign verify-blob --cert cosign_output/cosign-cert.pem --signature cosign_output/cosign-signature.sig results.sarif
+#       - name: "Verify cert"
+#         env:
+#           COSIGN_EXPERIMENTAL: true
+#         run: |
+#           cosign verify-blob --cert cosign_output/cosign-cert.pem --signature cosign_output/cosign-signature.sig results.sarif
