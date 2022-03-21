@@ -46,25 +46,17 @@ jobs:
       - name: "Upload artifact"
         uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
         with:
-          name: SARIF file
-          path: results.sarif
-          retention-days: 5
-      
-      # Temp for debugging.
-      - name: "Upload artifact"
-        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2.3.1
-        with:
-          name: JSON file
+          name: Results
           path: |
            results.json
            results.sarif
           retention-days: 5
 
-#       # Upload the results to GitHub's code scanning dashboard.
-#       - name: "Upload to code-scanning"
-#         uses: github/codeql-action/upload-sarif@5f532563584d71fdef14ee64d17bafb34f751ce5 # v1.0.26
-#         with:
-#           sarif_file: results.sarif
+      # Upload the results to GitHub's code scanning dashboard.
+      - name: "Upload to code-scanning"
+        uses: github/codeql-action/upload-sarif@5f532563584d71fdef14ee64d17bafb34f751ce5 # v1.0.26
+        with:
+          sarif_file: results.sarif
       
 #       # Install Cosign and run on results.
 #       - name: Install Cosign
