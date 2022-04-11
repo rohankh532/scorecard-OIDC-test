@@ -29,7 +29,7 @@ jobs:
           persist-credentials: false
 
       - name: "Run analysis"
-        uses: rohankh532/scorecard-action@scorecard-cosign-api # fork
+        uses: rohankh532/scorecard-action@branch-bugfix # fork
         with:
           results_file: results.sarif
           results_format: sarif
