@@ -8,7 +8,6 @@ on:
     branches: [ main ]
 
 # Declare default permissions as read only.
-permissions: read-all	
 
 jobs:
   analysis:
@@ -54,4 +53,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@5f532563584d71fdef14ee64d17bafb34f751ce5 # v1.0.26
         with:
           sarif_file: results.sarif
-
