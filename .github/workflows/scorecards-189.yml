@@ -27,7 +27,7 @@ jobs:
           persist-credentials: false
 
       - name: "Run analysis"
-        uses: ossf/scorecard-action@golang-staging
+        uses: rohankh532/scorecard-action@add-log # ossf/scorecard-action@golang-staging
         with:
           results_file: results.sarif
           results_format: sarif
